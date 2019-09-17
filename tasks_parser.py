@@ -3,7 +3,9 @@
 # pt:2 Min-Min / Min-Max scheduler
 from pathlib import Path
 import pandas as pd  
-import numbers
+from bag import bag
+from bag import cost
+from bag import machine_id
 
 # input: vaild CSV file
 # output: bag object (vector of maps)
@@ -11,16 +13,19 @@ def parser(FileName):
     rawData = pd.read_csv(Path(FileName))  
   
     machines = rawData.columns[1:]
-    bag = dict()
+    bagOf = dict()
     
-    m = machines[0]
+    m = 0
     for index, row in rawData.iterrows():
-        task = row[0]
-        bag[task] = dict()
+        task = str(row[0]).strip()
+        bagOf[task] = list()
         vals = row[1:]
         for v in vals:
-            if isinstance(float(v), numbers.Number):
-                bag[task][float(v)] = next(m)
+            try:
+                bagOf[task].append({cost:float(v), machine_id:str(machines[m]).strip()})
+            except ValueError:
+                pass # not a number so skip
+            m += 1
+        m = 0
                 
-    print (bag)
-    return "foo"
+    return bag(bagOf)

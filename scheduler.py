@@ -3,11 +3,16 @@
 # pt:2 Min-Min / Min-Max scheduler
 import argparse
 from tasks_parser import parser
+from bag import bag, min_min, min_max
 
 args = argparse.ArgumentParser(description='Do Min-Min and Min-Max scheduling on a bag of tasks.')
 
-args.add_argument('file_path', help='Path to CSV file, header is a list of machines each row is a task and associated cost on machines')
+args.add_argument('-i', help='Path to CSV file, header is a list of machines each row is a task and associated cost on machines')
+args.add_argument('-o', help='Path to folder or file to output schedule')
 
-path = vars(args.parse_args())['file_path']
+inputFile = vars(args.parse_args())['i']
+outputFile = vars(args.parse_args())['o']
 
-bag = parser(path)
+bag = parser(inputFile)
+# min_min(bag,outputFile)
+min_max(bag,outputFile)
