@@ -1,0 +1,60 @@
+  ,M1 , M2 , M3
+T1,10 , 20 , -
+T2,20 , 10 , 10
+T3, - , -  , 99
+T4, 5 , 5 , 30
+
+
+Min-Min
+
+T1 -> M1:10
+T2 -> M2:10
+T3 -> M3:99
+T4 -> M1:5
+
+Assign T4 -> M1
+
+T1 -> M1:15
+T2 -> M2:10
+T3 -> M3:99
+
+Assign T2 -> M2
+
+T1 -> M1:15
+T3 -> M3:99
+
+Assign T1 -> M1
+
+T3 -> M3:99
+
+Assign T3 -> M3
+
+Max-Min
+
+T1 -> M1:10
+T2 -> M2:10
+T3 -> M3:99
+T4 -> M1:5
+
+Assign T3 -> M3
+
+T1 -> M1:10
+T2 -> M2:10
+T4 -> M1:5
+
+Assign T1 -> M1
+
+T2 -> M2:10
+T4 -> M1:15
+
+Assign T4 -> M1
+
+T2 -> M2:10
+
+Assign T2 -> M2
+
+
+
+
+
+
