@@ -37,7 +37,7 @@ class bag:
         min = self.min(task)
         min2 = self.max(task)
         for m in machines:
-            if m[cost] < min2[cost] and m[cost] != min:
+            if m[cost] < min2[cost] and m[cost] != min[cost]:
                 min2 = m
         return min2
 
@@ -95,6 +95,21 @@ def min_max(bag,output):
 def sufferage(bag,output):
     out = open(Path(output), "w+")
     
+    while(len(bag.tasks) != 0):
+        task = list(bag.tasks.keys())[0]
+        assignment = bag.min2(task)
+        min = bag.min(task)
+        min2 = bag.min2(task)
+        suf = min2[cost] - min[cost]
+        for t in bag.tasks:
+            min = bag.min(t)
+            min2 = bag.min2(t)
+            if suf < min2[cost] - min[cost]:
+                task = t
+                suf = min2[cost] - min[cost]
+                assignment = min2
 
+        out.write(f"Assign {task} -> {assignment[machine_id]}\n")
+        bag.update(task,assignment)
 
     out.close()
