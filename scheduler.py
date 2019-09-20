@@ -14,6 +14,8 @@ inputFile = vars(args.parse_args())['i']
 outputFile = vars(args.parse_args())['o']
 
 bag = parser(inputFile)
-# min_min(bag,outputFile)
-#min_max(bag,outputFile)
-sufferage(bag,outputFile)
+min_min(bag,"min_min_"+outputFile)
+bag = parser(inputFile)
+min_max(bag,"min_max_"+outputFile)
+bag = parser(inputFile)
+sufferage(bag,"sufferage_"+outputFile)
